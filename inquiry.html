@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        nav ul {
+                list-style-type: none;
+                padding: 0;
+            }
+        nav ul li {
+                display: inline;
+                margin-right: 10px;
+        }
+        nav ul li a {
+                text-decoration: none;
+                color: #333;
+        }
+        nav li:hover {
+                background-color: aquamarine;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 100px;
+        }
+        .sendBtn{
+            color:red;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1 >ニセモノWebショッピング</h1>
+        <nav>
+            <ul>
+                <li><a href = "index.html">商品紹介と購入</a></li>
+                <li><a href = "aboutus.html">私たちについて</a></li>
+                <li><a href = "#inquiry">問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="inquiry">
+        <h2>お問い合わせ</h2>
+       
+        <div class="form-group">
+            <h2>お客様情報の入力</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">名前</label>
+                    <input type="text" id="name" name="name" required>
+                    <!--required→必須の入力フォーム-->
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                    <label for="gender">性別</label>
+                    <label><input type="radio" id="gender" name="gender" value="male">男性 </label>
+                    <label><input type="radio" id="gender" name="gender" value="female">女性 </label>
+                    <label><input type="radio" id="gender" name="gender" value="other" checked>その他 </label>
+                
+                <div class="form-group">
+                    <label for="address">お問い合わせ内容</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <p>送信は取り消せません。よろしければ「送信する」を押してください。</p>
+                <button type="submit" class="sendBtn" onclick="sendMessage()">送信する</button>
+                <button type="retire" class="btn" onclick="retiredMessage()">やめる</button>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        function sendMessage(){
+            alert("ニセモノサイトなのでお応えできません。ありがとうございました。");
+        }
+        function retiredMessage(){
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

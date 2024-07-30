@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お会計</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .checkout {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .checkout-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 100px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>お会計</h1>
+    </header>
+    <main>
+    <div class="checkout">
+        <h2>お会計の詳細</h2>
+        <div id="checkout-items">
+        </div>
+        <div class="form-group">
+            <h2>お客様情報の入力</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">名前</label>
+                    <input type="text" id="name" name="name" required>
+                    <!--required→必須の入力フォーム-->
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">電話番号</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">住所</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <button type="submit" class="btn" onclick="final()">注文を確定する</button>
+            </form>
+        </div>
+    </div>
+    </main>
+
+    <script>
+        function displayCartItems() {
+            const checkoutItems = document.getElementById('checkout-items');
+            checkoutItems.innerHTML = ''; // 既存の内容をクリア
+
+            // ローカルストレージからカートアイテムを取得
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const total = localStorage.getItem('total') || 0;
+
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'checkout-item';
+                itemDiv.innerHTML = `${item.name} - ¥${item.price}`;
+                checkoutItems.appendChild(itemDiv);
+            });
+
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'checkout-item';
+            totalDiv.innerHTML = `<strong>合計金額: ¥${total}</strong>`;
+            checkoutItems.appendChild(totalDiv);
+        }
+
+        // ページ読み込み時にカートアイテムを表示
+        displayCartItems();
+
+        function final(){
+            var name= document.getElementById('name').value;
+            var email= document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+    
+            if(!name || !email || !phone || !address){
+                alert('全て必須項目です。入力してください');
+            }
+           else{
+             alert('ニセモノwebショッピングサイトなのに送信を試みるとは・・さすがですね。気が付きました？実は支払方法を入力させていないんです。へへへ。');
+           }
+        }
+        
+    </script>
+</body>
+</html>
